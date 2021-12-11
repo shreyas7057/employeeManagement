@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="content-wrapper">
+    <h1 class="text-center">Update Your Job</h1>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- SELECT2 EXAMPLE -->
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3 class="card-title">Update Job</h3>
+
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form method="POST">
+                                {% csrf_token %}
+                                
+                                <label>Position:</label>
+                                <input type="text" value="{{ job.position }}" name="position" class="form-control">
+
+                                <label>Company Name:</label>
+                                <input type="text" value="{{ job.company_name }}" name="company_name" class="form-control">
+
+                                <label>Company Exp in months:</label>
+                                <input type="text" value="{{ job.exp_in_company }}" name="exp_in_company" class="form-control">
+                            
+                            <input type="submit" value="Submit" class="btn btn-dark mt-4">
+                            </form>
+
+                        </div>
+                        <!-- /.col -->
+
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+        </div>
+    </section>
+
+</div>
+
+
+{% endblock content %}

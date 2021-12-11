@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content-wrapper">
+    <h1 class="text-center">Add Your Job Information</h1>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- SELECT2 EXAMPLE -->
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3 class="card-title">Job Information</h3>
+
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form method="POST">
+                                {% csrf_token %}
+                            {% for field in form %}
+                                
+                                <label>{{ field.label_tag }}</label>
+
+                                {{ field }}
+
+                                {% if field.errors %}
+                                    {{ field.errors }}
+                                {% endif %}
+                            
+                            {% endfor %}
+                            
+                            <input type="submit" value="Submit" class="btn btn-dark mt-4">
+                            </form>
+
+                        </div>
+                        <!-- /.col -->
+
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+        </div>
+    </section>
+
+</div>
+
+
+{% endblock content %}

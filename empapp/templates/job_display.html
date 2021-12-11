@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if jobs %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Jobs</h1>
+                </div>
+
+                
+            </div>
+
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Previous Job List</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Position</th>
+                                        <th>Company Name</th>
+                                        <th>Experience(in months)</th>
+                                        <th>Update</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for job in jobs %}
+                                    <tr>
+                                        <td>{{ job.position }}</td>
+                                        <td>{{ job.company_name }}
+                                        </td>
+                                        <td>{{ job.exp_in_company }}</td>
+                                        <td><a href="{% url 'update_job' job.id %}">Update</a></td>
+                                        <td><a href="{% url 'delete_job' job.id %}">Delete</a></td>
+                                    </tr>
+                                    {% endfor %}
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% else %}
+
+    <h1 class="text-center">Currently No Jobs Added.</h1>
+
+    {% endif %}
+
+
+    {% endblock content %}

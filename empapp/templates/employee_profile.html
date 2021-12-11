@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <h1 class="text-center">Your Information</h1>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-3">
+  
+              <!-- Profile Image -->
+              {% for employee in employees %}
+              <div class="card card-primary card-outline">
+                <div class="card-body box-profile">
+                  <div class="text-center">
+                    <img class="profile-user-img img-fluid img-circle" src="{{ employee.image.url }}"
+                         alt="{{ employee.name }}">
+                  </div>
+  
+                  <h3 class="profile-username text-center">{{ employee.name }}</h3>
+  
+                  <p class="text-muted text-center">{{ employee.department }}</p>
+  
+                  <ul class="list-group list-group-unbordered mb-3">
+                    
+                    <li class="list-group-item">
+                      <b>Contact</b> <a class="float-right">{{ employee.phone }}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Employee Code</b> <a class="float-right">{{ employee.employee_code }}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Aadhar Card No.</b> <a class="float-right">{{ employee.aadhar_card_no }}</a>
+                    </li>
+                  </ul>
+  
+                </div>
+                <!-- /.card-body -->
+              </div>
+              {% endfor %}
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+              <div class="card">
+                <div class="card-header p-2">
+                  <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link" href="">Salary Detail</a></li>
+                    
+                  </ul>
+                </div><!-- /.card-header -->
+                <div class="card-body">
+                  <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                      
+                      <!-- Post -->
+                      {% for salary in salaries %}
+                      <div class="post">
+                        <div class="user-block">
+                          <span class="username">
+                            <a href="#">Salary Amount: {{ salary.salary_amount }}</a>
+                            
+                          </span>
+                          <span class="description">Salary Month: {{ salary.salary_month }}</span>
+                        </div>
+                        <!-- /.user-block -->
+                        <p>
+                          Description: {{ salary.salary_description }}
+                        </p>
+
+                        {% if salary.bonus %}
+                          <p>Bonus: {{ salary.bonus }}</p>
+                        {% endif %}
+
+                        <p>Salary with bonus: {{ salary.bonusandsalary }}</p>
+                        
+                        {% if salary.salary_given == "Pending" %}
+                        <p>
+                          Salary Status: 
+                          <span class="badge badge-pill badge-warning">{{ salary.salary_given }}</span>
+                        </p>
+                        {% endif %}
+
+                        {% if salary.salary_given == "Done" %}
+                        <p>
+                          Salary Status: 
+                          <span class="badge badge-pill badge-success">{{ salary.salary_given }}</span>
+                        </p>
+                        {% endif %}
+
+                        {% if salary.salary_given == "50%" %}
+                        <p>
+                          Salary Status: 
+                          <span class="badge badge-pill badge-primary">{{ salary.salary_given }}</span>
+                        </p>
+                        {% endif %}
+
+                        
+  
+                      {% endfor %}
+                      <!-- /.post -->
+
+                    </div>
+
+
+                  </div>
+                  <!-- /.tab-content -->
+                </div><!-- /.card-body -->
+              </div>
+              <!-- /.card -->    
+      
+            </div>
+
+            <!-- /.col -->
+          </div>
+          
+
+          
+          <!-- leave management sector starts -->
+
+          <div class="card">
+            <div class="card-header p-2">
+              <ul class="nav nav-pills">
+                <li class="nav-item"><a class="nav-link" href="">Leave's Detail</a></li>
+                
+              </ul>
+            </div><!-- /.card-header -->
+            <div class="card-body">
+              <div class="tab-content">
+                <div class="active tab-pane" id="activity">
+                  
+                  <!-- Post -->
+                  {% for leave in leaves %}
+                  <div class="post">
+                    <div class="user-block">
+                      <span class="username">
+                        <a href="#">Leave From: {{ leave.leave_from }}</a>
+                        
+                      </span>
+                      <span class="description">Leave Till: {{ leave.leave_till }}</span>
+                    </div>
+                    <!-- /.user-block -->
+                    <p>
+                      Leave Reason: {{ leave.leave_reason }}
+                    </p>
+
+                  
+                    {% if leave.leave_status == "Accepted" %}
+                    <p>
+                      Leave Status: 
+                      <span class="badge badge-pill badge-success">{{ leave.leave_status }}</span>
+                    </p>
+                    {% endif %}
+
+                    {% if leave.leave_status == "Rejected" %}
+                    <p>
+                      Leave Status: 
+                      <span class="badge badge-pill badge-danger">{{ leave.leave_status }}</span>
+                    </p>
+                    {% endif %}
+
+                    {% if leave.leave_status == "Pending" %}
+                    <p>
+                      Leave Status: 
+                      <span class="badge badge-pill badge-warning">{{ leave.leave_status }}</span>
+                    </p>
+                    {% endif %}
+
+                  {% endfor %}
+                  <!-- /.post -->
+
+                </div>
+
+
+              </div>
+              <!-- /.tab-content -->
+            </div><!-- /.card-body -->
+          </div>
+          <!-- /.card -->    
+  
+        </div>
+          <!-- leave management sector ends -->
+
+
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+
+</div>
+
+
+{% endblock content %}

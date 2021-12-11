@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <title>Employee Register</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <a href="/" class="btn btn-dark">Home</a>
+      </div>
+      <div class="col-md-6 pt-4">
+        <h1 class="text-center alert alert-success">Employee Register</h1>
+
+        <div class="border border-dark">
+          <form class="mt-4 mb-4" method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <input type="submit" value="Register" class="btn btn-dark btn-lg">
+          </form>
+          
+          <div class="col-md-9 text-center">
+            <p>Have account? <a href="{% url 'login-employee' %}">Login here</a></p>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>
